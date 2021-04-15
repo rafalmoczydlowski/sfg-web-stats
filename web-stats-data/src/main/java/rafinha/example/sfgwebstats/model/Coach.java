@@ -1,4 +1,4 @@
-package rafinha.example.sfgwebstats;
+package rafinha.example.sfgwebstats.model;
 
 public class Coach extends Person {
 

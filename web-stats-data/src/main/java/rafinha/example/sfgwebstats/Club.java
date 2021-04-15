@@ -1,4 +1,4 @@
-package rafinha.example.sfgwebstats.model;
+package rafinha.example.sfgwebstats;
 
 import java.time.LocalDate;
 import java.util.Set;

@@ -3,7 +3,7 @@ package rafinha.example.sfgwebstats.model;
 import java.time.LocalDate;
 import java.util.Set;
 
-public class Club {
+public class Club extends BaseEntity{
 
     private String name;
     private LocalDate yearOfEstablishment;

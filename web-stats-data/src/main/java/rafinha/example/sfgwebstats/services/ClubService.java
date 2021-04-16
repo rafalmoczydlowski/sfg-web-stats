@@ -6,13 +6,7 @@ import rafinha.example.sfgwebstats.model.Player;
 
 import java.util.Set;
 
-public interface ClubService {
-
-    Club findById(Long id);
-
-    Club save(Club club);
-
-    Set<Club> findAll();
+public interface ClubService extends CrudService<Club, Long> {
 
     Set<Player> findClubPlayers(String clubName);
 

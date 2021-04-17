@@ -4,12 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/clubs")
+@RequestMapping("/coaches")
 @Controller
-public class ClubController {
+public class CoachController {
 
     @GetMapping({"", "/", "/index", "/index.html"})
-    public String listClubs() {
-        return "clubs/index";
+    public String getCoaches(){
+        return "coaches/index";
     }
 }

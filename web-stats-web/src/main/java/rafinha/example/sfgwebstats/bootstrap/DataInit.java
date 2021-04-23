@@ -7,8 +7,6 @@ import rafinha.example.sfgwebstats.model.Coach;
 import rafinha.example.sfgwebstats.model.Player;
 import rafinha.example.sfgwebstats.services.CoachService;
 import rafinha.example.sfgwebstats.services.PlayerService;
-import rafinha.example.sfgwebstats.services.map.CoachServiceMap;
-import rafinha.example.sfgwebstats.services.map.PlayerServiceMap;
 
 @Component
 public class DataInit implements CommandLineRunner {
@@ -16,9 +14,9 @@ public class DataInit implements CommandLineRunner {
     private final PlayerService playerService;
     private final CoachService coachService;
 
-    public DataInit() {
-        playerService = new PlayerServiceMap();
-        coachService = new CoachServiceMap();
+    public DataInit(PlayerService playerService, CoachService coachService) {
+        this.playerService = playerService;
+        this.coachService = coachService;
     }
 
     @Override

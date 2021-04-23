@@ -1,11 +1,13 @@
 package rafinha.example.sfgwebstats.services.map;
 
+import org.springframework.stereotype.Service;
 import rafinha.example.sfgwebstats.model.Player;
 import rafinha.example.sfgwebstats.services.PlayerService;
 
 import java.util.Collections;
 import java.util.Set;
 
+@Service
 public class PlayerServiceMap extends AbstractMapService<Player, Long> implements PlayerService {
     @Override
     public Player findByLastName(String lastName) {

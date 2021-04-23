@@ -5,6 +5,26 @@
     <title>WebStats List of Clubs</title>
 </head>
 <body>
-    <h1 th:text="'List of Clubs'">List of Clubs...</h1>
+    <h1 th:text="'List of Clubs'">List of Clubs</h1>
+
+    <table>
+        <caption>All clubs in database</caption>
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Coach</th>
+            <th scope="col">Players</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="club:${clubs}">
+            <td th:text="${club.id}"></td>
+            <td th:text="${club.name}"></td>
+            <td th:text="${club.coach.firstName} + ' ' + ${club.coach.lastName}"></td>
+            <td th:text="${club.getPlayersFullNames()}"></td>
+        </tr>
+        </tbody>
+    </table>
 </body>
 </html>

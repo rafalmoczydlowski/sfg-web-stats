@@ -5,6 +5,32 @@
     <title>WebStats List of Players</title>
 </head>
 <body>
-    <h1 th:text="'List of Players'">List of Players...</h1>
+    <h1 th:text="'List of Players'">Players List</h1>
+
+    <table>
+        <caption>All players in database</caption>
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Shirt Number</th>
+            <th scope="col">Position</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Club</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="player:${players}">
+            <td th:text="${player.id}"></td>
+            <td th:text="${player.shirtNumber}"></td>
+            <td th:text="${player.position}"></td>
+            <td th:text="${player.firstName}"></td>
+            <td th:text="${player.lastName}"></td>
+            <td th:text="${player.age}"></td>
+            <td th:text="${player.club.name}"></td>
+        </tr>
+        </tbody>
+    </table>
 </body>
 </html>

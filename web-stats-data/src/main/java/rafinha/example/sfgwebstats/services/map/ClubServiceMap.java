@@ -43,6 +43,6 @@ public class ClubServiceMap extends AbstractMapService<Club, Long> implements Cl
 
     @Override
     public Club save(Club object) {
-        return super.save(object.getId(), object);
+        return super.save(object);
     }
 }

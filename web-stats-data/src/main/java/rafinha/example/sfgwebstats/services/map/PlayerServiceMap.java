@@ -41,6 +41,6 @@ public class PlayerServiceMap extends AbstractMapService<Player, Long> implement
 
     @Override
     public Player save(Player object) {
-        return super.save(object.getId(), object);
+        return super.save(object);
     }
 }

@@ -26,14 +26,12 @@ public class DataInit implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Club fcBarcelona = new Club();
         fcBarcelona.setName("FC Barcelona");
-        fcBarcelona.setId(1L);
 
         clubService.save(fcBarcelona);
 
         System.out.println("Loaded Clubs...");
 
         Player player1 = new Player();
-        player1.setId(1L);
         player1.setPosition("GK");
         player1.setClub(fcBarcelona);
         player1.setShirtNumber(1);
@@ -44,7 +42,6 @@ public class DataInit implements CommandLineRunner {
         playerService.save(player1);
 
         Player player2 = new Player();
-        player2.setId(2L);
         player2.setPosition("FW");
         player2.setClub(fcBarcelona);
         player2.setShirtNumber(10);
@@ -58,7 +55,6 @@ public class DataInit implements CommandLineRunner {
         System.out.println("Loaded Players...");
 
         Coach coach1 = new Coach();
-        coach1.setId(1L);
         coach1.setClub(fcBarcelona);
         coach1.setAge(55);
         coach1.setFirstName("Ronald");

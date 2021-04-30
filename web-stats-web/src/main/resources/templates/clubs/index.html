@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'clubs')}">
 <head>
     <meta charset="UTF-8">
     <title>WebStats List of Clubs</title>
 </head>
 <body>
-    <h1 th:text="'List of Clubs'">List of Clubs</h1>
+    <h2 style="text-align: center;font-family: Electro Shackle, sans-serif; text-decoration: underline" th:text="'List of Clubs'">List of Clubs</h2>
 
-    <table>
-        <caption>All clubs in database</caption>
+    <table class="table table-striped">
+        <caption style="text-align: center; font-size: medium; color: black">All clubs in database</caption>
         <thead>
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Coach</th>
-            <th scope="col">Players</th>
+            <th scope="col" style="width: 50px">ID</th>
+            <th scope="col" style="width: 150px">Name</th>
+            <th scope="col" style="width: 150px">Coach</th>
+            <th scope="col" style="width: 600px">Players</th>
         </tr>
         </thead>
         <tbody>

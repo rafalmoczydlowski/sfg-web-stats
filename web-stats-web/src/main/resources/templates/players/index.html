@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'players')}">
 <head>
     <meta charset="UTF-8">
     <title>WebStats List of Players</title>
 </head>
 <body>
-    <h1 th:text="'List of Players'">Players List</h1>
+    <h2 style="text-align: center; font-family: Electro Shackle, sans-serif;  text-decoration: underline" th:text="'List of Players'">Players List</h2>
 
-    <table>
-        <caption>All players in database</caption>
+    <table class="table table-striped">
+        <caption style="text-align: center; font-size: medium; color: black">All players in database</caption>
         <thead>
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Shirt Number</th>
-            <th scope="col">Position</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Age</th>
-            <th scope="col">Club</th>
+            <th scope="col" style="width: 150px">ID</th>
+            <th scope="col" style="width: 150px">Shirt Number</th>
+            <th scope="col" style="width: 150px">Position</th>
+            <th scope="col" style="width: 200px">First Name</th>
+            <th scope="col" style="width: 200px">Last Name</th>
+            <th scope="col" style="width: 150px">Age</th>
+            <th scope="col" style="width: 200px">Club</th>
         </tr>
         </thead>
         <tbody>

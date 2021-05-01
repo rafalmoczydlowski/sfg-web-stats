@@ -2,14 +2,8 @@ package rafinha.example.sfgwebstats.bootstrap;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import rafinha.example.sfgwebstats.model.Club;
-import rafinha.example.sfgwebstats.model.Coach;
-import rafinha.example.sfgwebstats.model.Match;
-import rafinha.example.sfgwebstats.model.Player;
-import rafinha.example.sfgwebstats.services.ClubService;
-import rafinha.example.sfgwebstats.services.CoachService;
-import rafinha.example.sfgwebstats.services.MatchService;
-import rafinha.example.sfgwebstats.services.PlayerService;
+import rafinha.example.sfgwebstats.model.*;
+import rafinha.example.sfgwebstats.services.*;
 
 import java.time.LocalDate;
 
@@ -20,21 +14,49 @@ public class DataInit implements CommandLineRunner {
     private final CoachService coachService;
     private final ClubService clubService;
     private final MatchService matchService;
+    private final PlayerTypeService playerTypeService;
 
-    public DataInit(PlayerService playerService, CoachService coachService, ClubService clubService, MatchService matchService) {
+    public DataInit(PlayerService playerService,
+                    CoachService coachService,
+                    ClubService clubService,
+                    MatchService matchService,
+                    PlayerTypeService playerTypeService) {
         this.playerService = playerService;
         this.coachService = coachService;
         this.clubService = clubService;
         this.matchService = matchService;
+        this.playerTypeService = playerTypeService;
     }
 
     @Override
     public void run(String... args) throws Exception {
+        int count = playerService.findAll().size();
+        if(count == 0)
+            initData();
+    }
+
+    private void initData() {
         Club fcBarcelona = new Club();
         fcBarcelona.setName("FC Barcelona");
 
         Club realMadryt = new Club();
         realMadryt.setName("Real Madryt");
+
+        PlayerType attacking = new PlayerType();
+        attacking.setDescription("A player whose main task is to attack the opponent's goal and score goals.");
+        PlayerType savedAttacking = playerTypeService.save(attacking);
+
+        PlayerType maestro = new PlayerType();
+        maestro.setDescription("A player whose main task is to create action through creative passes, technical tricks.");
+        PlayerType savedMaestro = playerTypeService.save(maestro);
+
+        PlayerType butcher = new PlayerType();
+        butcher.setDescription("A player whose main task is to interrupt the opponent's actions as far as possible.");
+        PlayerType savedButcher = playerTypeService.save(butcher);
+
+        PlayerType goalkeeper = new PlayerType();
+        butcher.setDescription("A player whose main task is to defend the opponent's shots");
+        PlayerType savedGoalkeeper = playerTypeService.save(goalkeeper);
 
         clubService.save(fcBarcelona);
         clubService.save(realMadryt);
@@ -48,6 +70,7 @@ public class DataInit implements CommandLineRunner {
         player1.setAge(25);
         player1.setFirstName("Rafał");
         player1.setLastName("Moczydłowski");
+        player1.getPlayerTypeSet().add(savedGoalkeeper);
 
         playerService.save(player1);
 
@@ -58,6 +81,7 @@ public class DataInit implements CommandLineRunner {
         player2.setAge(33);
         player2.setFirstName("Lionel");
         player2.setLastName("Messi");
+        player2.getPlayerTypeSet().add(savedAttacking);
 
         playerService.save(player2);
 
@@ -68,9 +92,9 @@ public class DataInit implements CommandLineRunner {
         player3.setAge(35);
         player3.setFirstName("Luka");
         player3.setLastName("Modric");
+        player3.getPlayerTypeSet().add(savedMaestro);
 
         playerService.save(player3);
-
 
         System.out.println("Loaded Players...");
 

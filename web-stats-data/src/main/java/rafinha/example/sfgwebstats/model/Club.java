@@ -2,6 +2,7 @@ package rafinha.example.sfgwebstats.model;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -10,7 +11,7 @@ public class Club extends BaseEntity{
 
     private String name;
     private LocalDate yearOfEstablishment;
-    private Set<Player> playerSet;
+    private Set<Player> playerSet = new HashSet<>();
     private Coach coach;
 
     public String getName() {

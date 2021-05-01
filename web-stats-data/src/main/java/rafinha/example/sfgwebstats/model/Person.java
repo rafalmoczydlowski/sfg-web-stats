@@ -1,5 +1,6 @@
 package rafinha.example.sfgwebstats.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Person extends BaseEntity{
@@ -7,7 +8,7 @@ public class Person extends BaseEntity{
     private String firstName;
     private String lastName;
     private int age;
-    private Set<Match> matchSet;
+    private Set<Match> matchSet = new HashSet<>();
 
     public String getFirstName() {
         return firstName;

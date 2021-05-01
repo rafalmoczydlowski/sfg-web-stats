@@ -2,13 +2,14 @@ package rafinha.example.sfgwebstats.model;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Match extends BaseEntity {
 
-    private Set<Club> playingClubs;
+    private Set<Club> playingClubs = new HashSet<>();
     private String score;
     private LocalDate playDate;
 

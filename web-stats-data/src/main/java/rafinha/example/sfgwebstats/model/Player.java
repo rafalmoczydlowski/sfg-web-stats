@@ -1,5 +1,6 @@
 package rafinha.example.sfgwebstats.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Player extends Person {
@@ -7,7 +8,7 @@ public class Player extends Person {
     private String position;
     private Club club;
     private int shirtNumber;
-    private Set<PlayerType> playerTypeSet;
+    private Set<PlayerType> playerTypeSet = new HashSet<>();
 
     public String getPosition() {
         return position;

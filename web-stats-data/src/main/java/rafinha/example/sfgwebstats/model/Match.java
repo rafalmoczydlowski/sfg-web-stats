@@ -1,7 +1,10 @@
 package rafinha.example.sfgwebstats.model;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Match extends BaseEntity {
 
@@ -31,5 +34,14 @@ public class Match extends BaseEntity {
 
     public void setPlayDate(LocalDate playDate) {
         this.playDate = playDate;
+    }
+
+    public void setOpponents(Club... clubs) {
+        this.playingClubs = Arrays.stream(clubs).collect(Collectors.toSet());
+    }
+
+    public String getOpponentsClubNames() {
+        List<String> clubNamesList = playingClubs.stream().map(Club::getName).collect(Collectors.toList());
+        return clubNamesList.toString().replaceAll("(^\\[|\\]$)", "");
     }
 }

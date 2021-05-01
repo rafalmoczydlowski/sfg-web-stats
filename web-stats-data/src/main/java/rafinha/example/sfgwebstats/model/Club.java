@@ -37,9 +37,6 @@ public class Club extends BaseEntity{
         this.playerSet = playerSet;
     }
 
-    public void setPlayers(Player... players) {
-        this.playerSet = Arrays.stream(players).collect(Collectors.toSet());
-    }
 
     public Coach getCoach() {
         return coach;
@@ -47,6 +44,10 @@ public class Club extends BaseEntity{
 
     public void setCoach(Coach coach) {
         this.coach = coach;
+    }
+
+    public void setPlayers(Player... players) {
+        this.playerSet = Arrays.stream(players).collect(Collectors.toSet());
     }
 
     public String getPlayersFullNames() {

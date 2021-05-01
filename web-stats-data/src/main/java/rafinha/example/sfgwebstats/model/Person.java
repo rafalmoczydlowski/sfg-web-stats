@@ -1,10 +1,13 @@
 package rafinha.example.sfgwebstats.model;
 
+import java.util.Set;
+
 public class Person extends BaseEntity{
 
     private String firstName;
     private String lastName;
     private int age;
+    private Set<Match> matchSet;
 
     public String getFirstName() {
         return firstName;
@@ -32,5 +35,13 @@ public class Person extends BaseEntity{
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public Set<Match> getMatchSet() {
+        return matchSet;
+    }
+
+    public void setMatchSet(Set<Match> matchSet) {
+        this.matchSet = matchSet;
     }
 }

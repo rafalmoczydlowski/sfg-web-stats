@@ -110,6 +110,5 @@ public class DataInit implements CommandLineRunner {
         System.out.println("Loaded Matches...");
         System.out.println("El Clasico is a match between: " + elClasico.getOpponentsClubNames().replace(",", " and") + ".");
         System.out.println("The last El Clasico took place " + elClasico.getPlayDate() + " and it ended with a result " + elClasico.getScore());
-
     }
 }

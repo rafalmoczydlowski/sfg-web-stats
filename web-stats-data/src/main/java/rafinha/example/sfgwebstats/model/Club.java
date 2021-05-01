@@ -41,11 +41,6 @@ public class Club extends BaseEntity{
         this.playerSet = Arrays.stream(players).collect(Collectors.toSet());
     }
 
-    public String getPlayersFullNames() {
-        List<String> playersList = playerSet.stream().map(Player::getFullName).collect(Collectors.toList());
-        return playersList.toString().replaceAll("(^\\[|\\]$)", "");
-    }
-
     public Coach getCoach() {
         return coach;
     }
@@ -54,4 +49,8 @@ public class Club extends BaseEntity{
         this.coach = coach;
     }
 
+    public String getPlayersFullNames() {
+        List<String> playersList = playerSet.stream().map(Player::getFullName).collect(Collectors.toList());
+        return playersList.toString().replaceAll("(^\\[|\\]$)", "");
+    }
 }

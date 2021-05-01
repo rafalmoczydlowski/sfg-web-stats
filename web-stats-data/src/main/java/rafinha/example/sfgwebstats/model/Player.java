@@ -1,10 +1,13 @@
 package rafinha.example.sfgwebstats.model;
 
+import java.util.Set;
+
 public class Player extends Person {
 
     private String position;
     private Club club;
     private int shirtNumber;
+    private Set<PlayerType> playerTypeSet;
 
     public String getPosition() {
         return position;
@@ -28,5 +31,13 @@ public class Player extends Person {
 
     public void setShirtNumber(int shirtNumber) {
         this.shirtNumber = shirtNumber;
+    }
+
+    public Set<PlayerType> getPlayerTypeSet() {
+        return playerTypeSet;
+    }
+
+    public void setPlayerTypeSet(Set<PlayerType> playerTypeSet) {
+        this.playerTypeSet = playerTypeSet;
     }
 }

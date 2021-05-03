@@ -107,10 +107,10 @@ public class DataInit implements CommandLineRunner {
         coachService.save(coach1);
 
         Coach coach2 = new Coach();
-        coach1.setClub(realMadryt);
-        coach1.setAge(55);
-        coach1.setFirstName("Zinedine");
-        coach1.setLastName("Zidane");
+        coach2.setClub(realMadryt);
+        coach2.setAge(55);
+        coach2.setFirstName("Zinedine");
+        coach2.setLastName("Zidane");
 
         coachService.save(coach2);
 

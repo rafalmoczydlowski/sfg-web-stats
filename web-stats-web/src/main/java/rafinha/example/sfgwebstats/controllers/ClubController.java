@@ -21,4 +21,9 @@ public class ClubController {
         model.addAttribute("clubs", clubService.findAll());
         return "clubs/index";
     }
+
+    @GetMapping({"/find"})
+    public String findClubs() {
+        return "notimplemented";
+    }
 }

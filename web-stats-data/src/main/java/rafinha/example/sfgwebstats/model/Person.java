@@ -1,14 +1,19 @@
 package rafinha.example.sfgwebstats.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 
+@MappedSuperclass
 public class Person extends BaseEntity{
 
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "age")
     private int age;
-    private Set<Match> matchSet = new HashSet<>();
 
     public String getFirstName() {
         return firstName;
@@ -36,13 +41,5 @@ public class Person extends BaseEntity{
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public Set<Match> getMatchSet() {
-        return matchSet;
-    }
-
-    public void setMatchSet(Set<Match> matchSet) {
-        this.matchSet = matchSet;
     }
 }

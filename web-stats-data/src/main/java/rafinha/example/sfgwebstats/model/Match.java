@@ -1,5 +1,9 @@
 package rafinha.example.sfgwebstats.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -7,10 +11,17 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Entity
+@Table(name = "matches")
 public class Match extends BaseEntity {
 
+    @ManyToMany(mappedBy = "matchSet")
     private Set<Club> playingClubs = new HashSet<>();
+
+    @Column(name = "score")
     private String score;
+
+    @Column(name = "play_date")
     private LocalDate playDate;
 
     public Set<Club> getPlayingClubs() {

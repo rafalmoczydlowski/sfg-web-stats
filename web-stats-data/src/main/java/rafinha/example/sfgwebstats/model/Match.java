@@ -22,8 +22,12 @@ public class Match extends BaseEntity {
     private LocalDate playDate;
 
     @ManyToOne
-    @JoinColumn(name = "club_id")
-    private Club club;
+    @JoinColumn(name = "host_club_id")
+    private Club hostClub;
+
+    @ManyToOne
+    @JoinColumn(name = "visitor_club_id")
+    private Club visitorClub;
 
     public Set<Club> getPlayingClubs() {
         return playingClubs;
@@ -58,11 +62,19 @@ public class Match extends BaseEntity {
         return clubNamesList.toString().replaceAll("(^\\[|\\]$)", "");
     }
 
-    public Club getClub() {
-        return club;
+    public Club getHostClub() {
+        return hostClub;
     }
 
-    public void setClub(Club club) {
-        this.club = club;
+    public void setHostClub(Club hostClub) {
+        this.hostClub = hostClub;
+    }
+
+    public Club getVisitorClub() {
+        return visitorClub;
+    }
+
+    public void setVisitorClub(Club visitorClub) {
+        this.visitorClub = visitorClub;
     }
 }

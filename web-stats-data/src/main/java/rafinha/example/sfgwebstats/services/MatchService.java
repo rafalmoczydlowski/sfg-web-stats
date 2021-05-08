@@ -7,5 +7,7 @@ import java.util.Set;
 
 public interface MatchService extends CrudService<Match, Long> {
 
-    Set<Match> findByClub(Club club);
+    Set<Match> findByHostClub(Club club);
+
+    Set<Match> findByVisitorClub(Club club);
 }

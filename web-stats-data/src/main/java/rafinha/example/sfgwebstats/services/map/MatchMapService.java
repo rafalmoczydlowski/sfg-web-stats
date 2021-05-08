@@ -36,7 +36,12 @@ public class MatchMapService extends AbstractMapService<Match, Long> implements 
     }
 
     @Override
-    public Set<Match> findByClub(Club club) {
+    public Set<Match> findByHostClub(Club club) {
+        return Collections.emptySet();
+    }
+
+    @Override
+    public Set<Match> findByVisitorClub(Club club) {
         return Collections.emptySet();
     }
 }

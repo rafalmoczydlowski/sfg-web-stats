@@ -126,13 +126,14 @@ public class DataInit implements CommandLineRunner {
         LocalDate elClasicoDate = LocalDate.of(2021, 04, 21);
         Match elClasico = new Match();
         elClasico.setPlayDate(elClasicoDate);
-        elClasico.setOpponents(realMadryt, fcBarcelona);
+        elClasico.setHostClub(realMadryt);
+        elClasico.setVisitorClub(fcBarcelona);
         elClasico.setScore("3:1");
 
         matchService.save(elClasico);
 
         System.out.println("Loaded Matches...");
-        System.out.println("El Clasico is a match between: " + elClasico.getOpponentsClubNames().replace(",", " and") + ".");
+        System.out.println("El Clasico is a match between: " + elClasico.getHostClub().getName() + " and " + elClasico.getVisitorClub().getName());
         System.out.println("The last El Clasico took place " + elClasico.getPlayDate() + " and it ended with a result " + elClasico.getScore());
     }
 }

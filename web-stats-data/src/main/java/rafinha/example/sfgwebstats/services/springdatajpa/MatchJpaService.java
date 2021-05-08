@@ -22,8 +22,13 @@ public class MatchJpaService implements MatchService {
     }
 
     @Override
-    public Set<Match> findByClub(Club club) {
-        return matchRepository.findByClub(club);
+    public Set<Match> findByHostClub(Club club) {
+        return matchRepository.findByHostClub(club);
+    }
+
+    @Override
+    public Set<Match> findByVisitorClub(Club club) {
+        return matchRepository.findByHostClub(club);
     }
 
     @Override

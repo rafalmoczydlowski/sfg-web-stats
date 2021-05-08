@@ -54,6 +54,10 @@ public class Club extends BaseEntity{
         this.playerSet = playerSet;
     }
 
+    public void addPlayer(Player player) {
+        playerSet.add(player);
+        player.setClub(this);
+    }
 
     public Coach getCoach() {
         return coach;

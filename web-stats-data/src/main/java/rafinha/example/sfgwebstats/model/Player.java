@@ -12,6 +12,7 @@ public class Player extends Person {
     private String position;
 
     @ManyToOne
+    @JoinColumn(name = "club_id")
     private Club club;
 
     @Column(name = "shirt_number")

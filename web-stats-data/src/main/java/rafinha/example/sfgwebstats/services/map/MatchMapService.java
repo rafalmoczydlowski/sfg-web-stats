@@ -1,5 +1,6 @@
 package rafinha.example.sfgwebstats.services.map;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import rafinha.example.sfgwebstats.model.Club;
 import rafinha.example.sfgwebstats.model.Match;
@@ -9,6 +10,7 @@ import java.util.Collections;
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"})
 public class MatchMapService extends AbstractMapService<Match, Long> implements MatchService {
     @Override
     public Set<Match> findAll() {

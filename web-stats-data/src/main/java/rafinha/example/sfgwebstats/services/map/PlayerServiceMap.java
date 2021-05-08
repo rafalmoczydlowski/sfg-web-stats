@@ -1,5 +1,6 @@
 package rafinha.example.sfgwebstats.services.map;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import rafinha.example.sfgwebstats.model.Player;
 import rafinha.example.sfgwebstats.model.PlayerType;
@@ -10,6 +11,7 @@ import java.util.Collections;
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"})
 public class PlayerServiceMap extends AbstractMapService<Player, Long> implements PlayerService {
 
     private final PlayerTypeService playerTypeService;

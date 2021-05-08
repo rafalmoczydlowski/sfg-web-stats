@@ -1,5 +1,6 @@
 package rafinha.example.sfgwebstats.services.map;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import rafinha.example.sfgwebstats.model.Coach;
 import rafinha.example.sfgwebstats.services.CoachService;
@@ -7,6 +8,7 @@ import rafinha.example.sfgwebstats.services.CoachService;
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"})
 public class CoachServiceMap extends AbstractMapService<Coach, Long> implements CoachService {
     @Override
     public Coach findByLastName(String lastName) {

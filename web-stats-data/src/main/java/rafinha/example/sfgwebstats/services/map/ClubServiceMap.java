@@ -1,5 +1,6 @@
 package rafinha.example.sfgwebstats.services.map;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import rafinha.example.sfgwebstats.model.Club;
 import rafinha.example.sfgwebstats.model.Coach;
@@ -8,6 +9,7 @@ import rafinha.example.sfgwebstats.services.ClubService;
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"})
 public class ClubServiceMap extends AbstractMapService<Club, Long> implements ClubService {
 
     @Override

@@ -1,9 +1,6 @@
 package rafinha.example.sfgwebstats.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -23,6 +20,10 @@ public class Match extends BaseEntity {
 
     @Column(name = "play_date")
     private LocalDate playDate;
+
+    @ManyToOne
+    @JoinColumn(name = "club_id")
+    private Club club;
 
     public Set<Club> getPlayingClubs() {
         return playingClubs;
@@ -55,5 +56,13 @@ public class Match extends BaseEntity {
     public String getOpponentsClubNames() {
         List<String> clubNamesList = playingClubs.stream().map(Club::getName).collect(Collectors.toList());
         return clubNamesList.toString().replaceAll("(^\\[|\\]$)", "");
+    }
+
+    public Club getClub() {
+        return club;
+    }
+
+    public void setClub(Club club) {
+        this.club = club;
     }
 }

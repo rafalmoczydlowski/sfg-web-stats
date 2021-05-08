@@ -1,6 +1,7 @@
 package rafinha.example.sfgwebstats.services.map;
 
 import org.springframework.stereotype.Service;
+import rafinha.example.sfgwebstats.model.Club;
 import rafinha.example.sfgwebstats.model.Match;
 import rafinha.example.sfgwebstats.services.MatchService;
 
@@ -35,7 +36,7 @@ public class MatchMapService extends AbstractMapService<Match, Long> implements 
     }
 
     @Override
-    public Set<Match> findByClubName(String clubName) {
+    public Set<Match> findByClub(Club club) {
         return Collections.emptySet();
     }
 }

@@ -1,9 +1,16 @@
 package rafinha.example.sfgwebstats.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "players")
 public class Player extends Person {
@@ -23,36 +30,4 @@ public class Player extends Person {
             joinColumns = @JoinColumn(name = "player_id"),
             inverseJoinColumns = @JoinColumn(name = "player_type_id"))
     private Set<PlayerType> playerTypeSet = new HashSet<>();
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public Club getClub() {
-        return club;
-    }
-
-    public void setClub(Club club) {
-        this.club = club;
-    }
-
-    public int getShirtNumber() {
-        return shirtNumber;
-    }
-
-    public void setShirtNumber(int shirtNumber) {
-        this.shirtNumber = shirtNumber;
-    }
-
-    public Set<PlayerType> getPlayerTypeSet() {
-        return playerTypeSet;
-    }
-
-    public void setPlayerTypeSet(Set<PlayerType> playerTypeSet) {
-        this.playerTypeSet = playerTypeSet;
-    }
 }

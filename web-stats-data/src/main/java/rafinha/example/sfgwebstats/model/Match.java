@@ -1,5 +1,7 @@
 package rafinha.example.sfgwebstats.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -8,6 +10,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "matches")
 public class Match extends BaseEntity {
@@ -29,30 +36,6 @@ public class Match extends BaseEntity {
     @JoinColumn(name = "visitor_club_id")
     private Club visitorClub;
 
-    public Set<Club> getPlayingClubs() {
-        return playingClubs;
-    }
-
-    public void setPlayingClubs(Set<Club> playingClubs) {
-        this.playingClubs = playingClubs;
-    }
-
-    public String getScore() {
-        return score;
-    }
-
-    public void setScore(String score) {
-        this.score = score;
-    }
-
-    public LocalDate getPlayDate() {
-        return playDate;
-    }
-
-    public void setPlayDate(LocalDate playDate) {
-        this.playDate = playDate;
-    }
-
     public void setOpponents(Club... clubs) {
         this.playingClubs = Arrays.stream(clubs).collect(Collectors.toSet());
     }
@@ -60,21 +43,5 @@ public class Match extends BaseEntity {
     public String getOpponentsClubNames() {
         List<String> clubNamesList = playingClubs.stream().map(Club::getName).collect(Collectors.toList());
         return clubNamesList.toString().replaceAll("(^\\[|\\]$)", "");
-    }
-
-    public Club getHostClub() {
-        return hostClub;
-    }
-
-    public void setHostClub(Club hostClub) {
-        this.hostClub = hostClub;
-    }
-
-    public Club getVisitorClub() {
-        return visitorClub;
-    }
-
-    public void setVisitorClub(Club visitorClub) {
-        this.visitorClub = visitorClub;
     }
 }

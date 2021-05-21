@@ -22,7 +22,11 @@ public class PlayerServiceMap extends AbstractMapService<Player, Long> implement
 
     @Override
     public Player findByLastName(String lastName) {
-        return null;
+        return this.findAll()
+                .stream()
+                .filter(player -> player.getLastName().equalsIgnoreCase(lastName))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
@@ -52,9 +56,9 @@ public class PlayerServiceMap extends AbstractMapService<Player, Long> implement
 
     @Override
     public Player save(Player object) {
-        if(!object.getPlayerTypeSet().isEmpty()) {
+        if(object != null && object.getPlayerTypeSet() != null) {
             object.getPlayerTypeSet().forEach(this::accept);
-        }        
+        }
         return super.save(object);
     }
 

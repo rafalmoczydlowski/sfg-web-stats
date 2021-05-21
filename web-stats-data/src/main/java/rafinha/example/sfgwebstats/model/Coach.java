@@ -10,10 +10,15 @@ import javax.persistence.Table;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "coaches")
 public class Coach extends Person {
+
+    @Builder
+    public Coach(Long id, String firstName, String lastName, int age, Club club) {
+        super(id, firstName, lastName, age);
+        this.club = club;
+    }
 
     @OneToOne
     private Club club;

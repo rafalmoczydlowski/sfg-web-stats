@@ -1,6 +1,9 @@
 package rafinha.example.sfgwebstats.model;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -9,11 +12,18 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "players")
 public class Player extends Person {
+
+    @Builder
+    public Player(Long id, String firstName, String lastName, int age, String position, Club club, int shirtNumber, Set<PlayerType> playerTypeSet) {
+        super(id, firstName, lastName, age);
+        this.position = position;
+        this.club = club;
+        this.shirtNumber = shirtNumber;
+        this.playerTypeSet = playerTypeSet;
+    }
 
     @Column(name = "position")
     private String position;

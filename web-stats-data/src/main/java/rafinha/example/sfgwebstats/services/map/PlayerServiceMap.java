@@ -2,6 +2,7 @@ package rafinha.example.sfgwebstats.services.map;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
+import rafinha.example.sfgwebstats.model.Club;
 import rafinha.example.sfgwebstats.model.Player;
 import rafinha.example.sfgwebstats.model.PlayerType;
 import rafinha.example.sfgwebstats.services.PlayerService;
@@ -30,7 +31,7 @@ public class PlayerServiceMap extends AbstractMapService<Player, Long> implement
     }
 
     @Override
-    public Set<Player> findAllByClub(String clubName) {
+    public Set<Player> findAllByClub(Club club) {
         return Collections.emptySet();
     }
 

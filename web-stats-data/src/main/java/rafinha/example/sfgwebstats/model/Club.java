@@ -14,10 +14,19 @@ import java.util.stream.Collectors;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "clubs")
 public class Club extends BaseEntity{
+
+    @Builder
+    public Club(Long id, String name, LocalDate yearOfEstablishment, Set<Player> playerSet, Coach coach, Set<Match> matchSet) {
+        super(id);
+        this.name = name;
+        this.yearOfEstablishment = yearOfEstablishment;
+        this.playerSet = playerSet;
+        this.coach = coach;
+        this.matchSet = matchSet;
+    }
 
     @Column(name = "name")
     private String name;

@@ -2,6 +2,7 @@ package rafinha.example.sfgwebstats.services.springdatajpa;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
+import rafinha.example.sfgwebstats.model.Club;
 import rafinha.example.sfgwebstats.model.Player;
 import rafinha.example.sfgwebstats.repositories.PlayerRepository;
 import rafinha.example.sfgwebstats.services.PlayerService;
@@ -25,8 +26,8 @@ public class PlayerJpaService implements PlayerService {
     }
 
     @Override
-    public Set<Player> findAllByClub(String clubName) {
-        return playerRepository.findAllByClub(clubName);
+    public Set<Player> findAllByClub(Club club) {
+        return playerRepository.findAllByClub(club.getName());
     }
 
     @Override

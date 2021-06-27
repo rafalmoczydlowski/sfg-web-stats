@@ -6,6 +6,8 @@ import rafinha.example.sfgwebstats.model.*;
 import rafinha.example.sfgwebstats.services.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class DataInit implements CommandLineRunner {
@@ -37,10 +39,15 @@ public class DataInit implements CommandLineRunner {
 
     private void initData() {
         Club fcBarcelona = new Club();
-        fcBarcelona.setName("FC Barcelona");
-
         Club realMadryt = new Club();
+
+        fcBarcelona.setName("FC Barcelona");
+        fcBarcelona.setYearOfEstablishment(LocalDate.of(1899, 11, 29));
+
         realMadryt.setName("Real Madryt");
+
+        clubService.save(fcBarcelona);
+        clubService.save(realMadryt);
 
         PlayerType attacking = new PlayerType();
         attacking.setDescription("A player whose main task is to attack the opponent's goal and score goals.");
@@ -58,11 +65,6 @@ public class DataInit implements CommandLineRunner {
         butcher.setDescription("A player whose main task is to defend the opponent's shots");
         PlayerType savedGoalkeeper = playerTypeService.save(goalkeeper);
 
-        clubService.save(fcBarcelona);
-        clubService.save(realMadryt);
-
-        System.out.println("Loaded Clubs...");
-
         Player player1 = new Player();
         player1.setPosition("GK");
         player1.setClub(fcBarcelona);
@@ -71,8 +73,6 @@ public class DataInit implements CommandLineRunner {
         player1.setFirstName("Rafał");
         player1.setLastName("Moczydłowski");
         player1.getPlayerTypeSet().add(savedGoalkeeper);
-
-        playerService.save(player1);
 
         Player player2 = new Player();
         player2.setPosition("FW");
@@ -83,8 +83,6 @@ public class DataInit implements CommandLineRunner {
         player2.setLastName("Messi");
         player2.getPlayerTypeSet().add(savedAttacking);
 
-        playerService.save(player2);
-
         Player player3 = new Player();
         player3.setPosition("MF");
         player3.setClub(realMadryt);
@@ -94,9 +92,9 @@ public class DataInit implements CommandLineRunner {
         player3.setLastName("Modric");
         player3.getPlayerTypeSet().add(savedMaestro);
 
+        playerService.save(player1);
+        playerService.save(player2);
         playerService.save(player3);
-
-        System.out.println("Loaded Players...");
 
         Coach coach1 = new Coach();
         coach1.setClub(fcBarcelona);
@@ -104,24 +102,19 @@ public class DataInit implements CommandLineRunner {
         coach1.setFirstName("Ronald");
         coach1.setLastName("Koeman");
 
-        coachService.save(coach1);
-
         Coach coach2 = new Coach();
         coach2.setClub(realMadryt);
         coach2.setAge(55);
         coach2.setFirstName("Zinedine");
         coach2.setLastName("Zidane");
 
+        coachService.save(coach1);
         coachService.save(coach2);
-
-        System.out.println("Loaded Coaches...");
 
         fcBarcelona.setCoach(coach1);
         fcBarcelona.setPlayers(player1, player2);
         realMadryt.setCoach(coach2);
         realMadryt.setPlayers(player3);
-
-        System.out.println("Creating match ---------");
 
         LocalDate elClasicoDate = LocalDate.of(2021, 04, 21);
         Match elClasico = new Match();
@@ -130,10 +123,13 @@ public class DataInit implements CommandLineRunner {
         elClasico.setVisitorClub(fcBarcelona);
         elClasico.setScore("3:1");
 
+        Set<Match> fcBarcelonaMatchSet = new HashSet<>();
+        fcBarcelonaMatchSet.add(elClasico);
+        fcBarcelona.setMatchSet(fcBarcelonaMatchSet);
+
         matchService.save(elClasico);
 
-        System.out.println("Loaded Matches...");
-        System.out.println("El Clasico is a match between: " + elClasico.getHostClub().getName() + " and " + elClasico.getVisitorClub().getName());
-        System.out.println("The last El Clasico took place " + elClasico.getPlayDate() + " and it ended with a result " + elClasico.getScore());
+        clubService.save(fcBarcelona);
+        clubService.save(realMadryt);
     }
 }

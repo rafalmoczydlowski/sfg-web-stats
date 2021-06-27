@@ -44,4 +44,8 @@ public class Match extends BaseEntity {
         List<String> clubNamesList = playingClubs.stream().map(Club::getName).collect(Collectors.toList());
         return clubNamesList.toString().replaceAll("(^\\[|\\]$)", "");
     }
+
+    public String getPlayingClubs() {
+        return hostClub.getName() + " - " +  visitorClub.getName();
+    }
 }

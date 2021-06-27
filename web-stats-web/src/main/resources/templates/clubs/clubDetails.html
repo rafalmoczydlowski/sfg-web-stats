@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'clubs')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Club Details</title>
+</head>
+<body>
+<h2>Club information</h2>
+<table class="table table-striped" th:object="${club}">
+    <tr>
+        <th>Name</th>
+        <td><b th:text="*{name}"></b></td>
+    </tr>
+    <tr>
+        <th>Established In</th>
+        <td><b th:text="*{#temporals.format(yearOfEstablishment, 'dd.MM.yyyy')}"></b></td>
+    </tr>
+    <tr>
+        <th>Players</th>
+        <td><b th:text="*{playersFullNames}"></b></td>
+    </tr>
+    <tr>
+        <th>Coach</th>
+        <td><b th:text="*{coach.fullName}"></b></td>
+    </tr>
+</table>
+<a th:href="@{{id}/edit(id=${club.id})}" class="btn btn-default">Edit Club</a>
+<a th:href="@{{id}/match/new(id=${club.id})}" class="btn btn-default">Add New Match</a>
+<br/>
+<br/>
+<br/>
+<h2>Matches</h2>
+<table class="table table-striped">
+    <tr th:each="match : ${club.matchSet}">
+        <td align="top">
+            <dl class="dl-horizontal">
+                <dt>ID</dt>
+                <dd th:text="${match.id}"></dd>
+            </dl>
+        </td>
+        <td align="top">
+            <table class="table-condensed">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Host Club</th>
+                    <th>Visitor</th>
+                    <th>Score</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td th:text="${#temporals.format(match.playDate, 'yyyy.MM.dd')}"></td>
+                    <td th:text="${match.hostClub.name}"></td>
+                    <td th:text="${match.visitorClub.name}"></td>
+                    <td th:text="${match.score}"></td>
+                </tr>
+                <tr>
+                    <td><a th:href="@{{clubId}/matches/{matchId}/edit(clubId=${club.id},matchId=${match.id})}">Edit Match</a></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

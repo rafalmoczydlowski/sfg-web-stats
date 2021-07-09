@@ -8,6 +8,7 @@ import rafinha.example.sfgwebstats.repositories.ClubRepository;
 import rafinha.example.sfgwebstats.services.ClubService;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -23,6 +24,11 @@ public class ClubJpaService implements ClubService {
     @Override
     public Club findClubByCoach(Coach coach) {
         return clubRepository.findClubByCoach(coach);
+    }
+
+    @Override
+    public List<Club> findAllByNameLike(String name) {
+        return clubRepository.findClubsByName(name);
     }
 
     @Override

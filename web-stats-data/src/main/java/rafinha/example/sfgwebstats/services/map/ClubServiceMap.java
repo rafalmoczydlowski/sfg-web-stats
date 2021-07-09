@@ -6,6 +6,8 @@ import rafinha.example.sfgwebstats.model.Club;
 import rafinha.example.sfgwebstats.model.Coach;
 import rafinha.example.sfgwebstats.services.ClubService;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -40,5 +42,10 @@ public class ClubServiceMap extends AbstractMapService<Club, Long> implements Cl
     @Override
     public Club findClubByCoach(Coach coach) {
         return null;
+    }
+
+    @Override
+    public List<Club> findAllByNameLike(String name) {
+        return Collections.emptyList();
     }
 }

@@ -23,7 +23,7 @@
         </td>
         <td th:text="${club.yearOfEstablishment}"/>
         <td th:text="${club.coach.fullName}"/>
-        <td><span th:each="player : ${club.playerSet}" th:text="${player.fullName}"/></td>
+        <td th:text="${club.playersFullNames}"/>
     </tr>
     </tbody>
 </table>

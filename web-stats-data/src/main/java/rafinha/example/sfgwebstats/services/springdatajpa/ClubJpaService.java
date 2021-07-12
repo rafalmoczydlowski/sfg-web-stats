@@ -28,7 +28,7 @@ public class ClubJpaService implements ClubService {
 
     @Override
     public List<Club> findAllByNameLike(String name) {
-        return clubRepository.findClubsByName(name);
+        return clubRepository.findClubsByNameContainingIgnoreCase(name);
     }
 
     @Override

@@ -10,6 +10,6 @@ public interface ClubRepository extends CrudRepository<Club, Long> {
 
     Club findClubByCoach(Coach coach);
 
-    List<Club> findClubsByName(String name);
+    List<Club> findClubsByNameContainingIgnoreCase(String name);
 
 }

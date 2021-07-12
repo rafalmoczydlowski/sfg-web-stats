@@ -34,7 +34,7 @@ public class ClubController {
             club.setName("");
         }
 
-        List<Club> results = clubService.findAllByNameLike(club.getName());
+        List<Club> results = clubService.findAllByNameLike(club.getName().toLowerCase());
 
         if(results.isEmpty()) {
             result.rejectValue("name", "notFound", "not found");

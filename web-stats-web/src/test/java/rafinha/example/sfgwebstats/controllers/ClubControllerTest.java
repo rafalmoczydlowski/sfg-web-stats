@@ -3,6 +3,7 @@ package rafinha.example.sfgwebstats.controllers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -19,9 +20,9 @@ import java.util.Set;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.verifyNoInteractions;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -94,5 +95,52 @@ class ClubControllerTest {
                 .param("name", ""))
                 .andExpect(status().isOk())
                 .andExpect(view().name("clubs/findClubs"));
+    }
+
+    @Test
+    void initUpdateClubForm() throws Exception {
+        when(clubService.findById(anyLong())).thenReturn(Club.builder().id(1L).build());
+
+        mvc.perform(get("/clubs/1/edit"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("clubs/createOrUpdateForm"))
+                .andExpect(model().attributeExists("club"));
+
+        verifyNoMoreInteractions(clubService);
+    }
+
+    @Test
+    void initCreateClubForm() throws Exception {
+
+        mvc.perform(get("/clubs/new"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("clubs/createOrUpdateForm"))
+                .andExpect(model().attributeExists("club"));
+
+        verifyNoInteractions(clubService);
+    }
+
+    @Test
+    void processUpdateClubForm() throws Exception {
+        when(clubService.save(ArgumentMatchers.any())).thenReturn(Club.builder().id(1L).build());
+
+        mvc.perform(post("/clubs/1/edit"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/clubs/1"))
+                .andExpect(model().attributeExists("club"));
+
+        verify(clubService).save(ArgumentMatchers.any());
+    }
+
+    @Test
+    void processCreateClubForm() throws Exception {
+        when(clubService.save(ArgumentMatchers.any())).thenReturn(Club.builder().id(1L).build());
+
+        mvc.perform(post("/clubs/new"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/clubs/1"))
+                .andExpect(model().attributeExists("club"));
+
+        verify(clubService).save(ArgumentMatchers.any());
     }
 }

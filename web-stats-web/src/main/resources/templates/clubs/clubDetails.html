@@ -16,20 +16,49 @@
         <th>Established In</th>
         <td><b th:text="*{#temporals.format(yearOfEstablishment, 'dd.MM.yyyy')}"></b></td>
     </tr>
-    <tr>
-        <th>Players</th>
-        <td><b th:text="*{playersFullNames}"></b></td>
-    </tr>
-    <tr>
-        <th>Coach</th>
-        <td><b th:text="*{coach.fullName}"></b></td>
-    </tr>
+    <a th:href="@{{id}/edit(id=${club.id})}" class="btn btn-default">Edit Club Informations</a>
 </table>
-<a th:href="@{{id}/edit(id=${club.id})}" class="btn btn-default">Edit Club</a>
-<a th:href="@{{id}/match/new(id=${club.id})}" class="btn btn-default">Add New Match</a>
-<br/>
-<br/>
-<br/>
+
+<h2>Coach</h2>
+<table class="table table-striped" th:object="${club.coach}">
+    <div th:if="${club.coach != null}">
+        <tr>
+            <td><b th:text="*{fullName}"></b></td>
+            <td><a th:href="@{{clubId}/coach/{coachId}/edit(clubId=${club.id},coachId=${club.coach.id})}">Edit Coach</a></td>
+        </tr>
+    </div>
+    <div th:if="${club.coach == null}">
+        <a th:href="@{{clubId}/coach/new(clubId=${club.id})}" class="btn btn-default">Add Coach</a>
+    </div>
+</table>
+
+<h2>Players</h2>
+<table class="table table-striped">
+    <tr th:each="player : ${club.playerSet}">
+        <td align="top">
+            <dl class="dl-horizontal">
+                <dt>ID</dt>
+                <dd th:text="${player.id}"></dd>
+            </dl>
+        </td>
+        <td align="top">
+            <table class="table-condensed">
+                <tr>
+                    <td th:text="${player.fullName}"></td>
+                </tr>
+            </table>
+        </td>
+        <td align="top">
+            <table class="table-condensed">
+                <tr>
+                    <td><a th:href="@{{clubId}/players/{playerId}/edit(clubId=${club.id},playerId=${player.id})}">Edit Player</a></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <a th:href="@{{id}/player/new(id=${club.id})}" class="btn btn-default">Add New Player</a>
+</table>
+
 <h2>Matches</h2>
 <table class="table table-striped">
     <tr th:each="match : ${club.matchSet}">
@@ -61,6 +90,7 @@
             </table>
         </td>
     </tr>
+    <a th:href="@{{id}/match/new(id=${club.id})}" class="btn btn-default">Add New Match</a>
 </table>
 </body>
 </html>

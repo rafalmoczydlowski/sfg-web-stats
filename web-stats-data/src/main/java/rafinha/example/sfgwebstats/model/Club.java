@@ -1,6 +1,7 @@
 package rafinha.example.sfgwebstats.model;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -32,12 +33,13 @@ public class Club extends BaseEntity{
     private String name;
 
     @Column(name = "year_of_establishment")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate yearOfEstablishment;
 
     @OneToMany(mappedBy = "club")
     private Set<Player> playerSet = new HashSet<>();
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private Coach coach;
 
     @ManyToMany

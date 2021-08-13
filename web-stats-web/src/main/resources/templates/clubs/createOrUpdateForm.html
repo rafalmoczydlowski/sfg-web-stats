@@ -5,6 +5,17 @@
     <title>Create/Update Club Form</title>
 </head>
 <body>
-    <h2 style="text-align: center;font-family: Electro Shackle, sans-serif; text-decoration: underline" th:text="'Club'">Club</h2>
+    <h2 style="text-align: center;font-family: Electro Shackle, sans-serif; text-decoration: underline" th:text="'Create/Update Club'">Club</h2>
+    <form th:object="${club}" class="form-horizontal" id="add-club-form" method="post">
+        <div class="form-group has-feedback">
+            <input th:replace="~{fragments/inputField :: input ('Name', 'name', 'text')}"/>
+            <input th:replace="~{fragments/inputField :: input ('Year Of Establishment', 'yearOfEstablishment', 'date')}"/>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button th:with="text=${club['new']} ? 'Add Club' : 'Update Club'" class="btn btn-default" type="submit" th:text="${text}">Add Club</button>
+            </div>
+        </div>
+    </form>
 </body>
 </html>

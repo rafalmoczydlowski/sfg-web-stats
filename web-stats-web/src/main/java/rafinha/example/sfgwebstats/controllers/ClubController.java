@@ -17,8 +17,8 @@ import java.util.List;
 @RequestMapping("/clubs")
 @Controller
 public class ClubController {
-    private final static String CLUB_UPDATE_CREATE_FORM_VIEWNAME = "clubs/createOrUpdateForm";
-    private final static String CLUB_REDIRECT_VIEWNAME = "redirect:/clubs/";
+    private static final String CLUB_UPDATE_CREATE_FORM_VIEWNAME = "clubs/createOrUpdateForm";
+    private static final String CLUB_REDIRECT_VIEWNAME = "redirect:/clubs/";
 
     private final ClubService clubService;
 

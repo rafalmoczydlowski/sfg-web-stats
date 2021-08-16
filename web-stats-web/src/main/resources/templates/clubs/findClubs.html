@@ -6,12 +6,12 @@
     <title>Find Clubs</title>
 </head>
 <body>
-    <h2>Find Clubs</h2>
+<h2 style="text-align: center; font-family: Electro Shackle, sans-serif;  text-decoration: underline" th:text="'Find Clubs'">Find Clubs</h2>
     <form th:object="${club}" th:action="@{/clubs}" method="get"
           class="form-horizontal" id="search-club-form">
         <div class="form-group">
             <div class="control-group" id="nameGroup">
-                <label class="col-sm-2 control-label">Name</label>
+                <label class="col-sm-2 control-label" style="font-family: Electro Shackle, sans-serif">Name</label>
                 <div class="col-sm-10">
                     <input class="form-control" th:field="*{name}" size="30" maxlength="80"/>
                     <span class="help-inline">
@@ -24,11 +24,11 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Find Club</button>
+                <button type="submit" class="btn btn-default" style="font-family: Electro Shackle, sans-serif">Find</button>
             </div>
         </div>
     </form>
     <br/>
-<a class="btn btn-default" th:href="@{/clubs/new}">Create Club</a>
+<a class="btn btn-default" style="font-family: Electro Shackle, sans-serif" th:href="@{/clubs/new}">Create Club</a>
 </body>
 </html>

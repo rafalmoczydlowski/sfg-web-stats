@@ -10,4 +10,6 @@ public interface PlayerService extends CrudService<Player, Long> {
     Player findByLastName(String lastName);
 
     Set<Player> findAllByClub(Club club);
+
+    Set<Player> findAllByClubId(Long clubId);
 }

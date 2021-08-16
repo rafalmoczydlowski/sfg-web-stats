@@ -6,91 +6,109 @@
     <title>Club Details</title>
 </head>
 <body>
-<h2>Club information</h2>
-<table class="table table-striped" th:object="${club}">
-    <tr>
-        <th>Name</th>
-        <td><b th:text="*{name}"></b></td>
-    </tr>
-    <tr>
-        <th>Established In</th>
-        <td><b th:text="*{#temporals.format(yearOfEstablishment, 'dd.MM.yyyy')}"></b></td>
-    </tr>
-    <a th:href="@{{id}/edit(id=${club.id})}" class="btn btn-default">Edit Club Informations</a>
-</table>
 
-<h2>Coach</h2>
-<table class="table table-striped" th:object="${club.coach}">
-    <div th:if="${club.coach != null}">
-        <tr>
-            <td><b th:text="*{fullName}"></b></td>
-            <td><a th:href="@{{clubId}/coach/{coachId}/edit(clubId=${club.id},coachId=${club.coach.id})}">Edit Coach</a></td>
-        </tr>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-header">
+                <h2 style="text-align: center; font-family: Electro Shackle, sans-serif">Club information</h2>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                <table class="table table-striped" th:object="${club}">
+                    <tr>
+                        <th>Name</th>
+                        <td><b th:text="*{name}"></b></td>
+                    </tr>
+                    <tr>
+                        <th>Established In</th>
+                        <td><b th:text="*{#temporals.format(yearOfEstablishment, 'dd.MM.yyyy')}"></b></td>
+                    </tr>
+                </table>
+                </p>
+            </div>
+            <div class="card-footer">
+                <a th:href="@{{id}/edit(id=${club.id})}" class="btn btn-default">Edit Club Informations</a>
+            </div>
+        </div>
     </div>
-    <div th:if="${club.coach == null}">
-        <a th:href="@{{clubId}/coach/new(clubId=${club.id})}" class="btn btn-default">Add Coach</a>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-header">
+                <h2 style="text-align: center; font-family: Electro Shackle, sans-serif">Coach</h2>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped" th:object="${club.coach}">
+                    <div th:if="${club.coach != null}">
+                        <tr>
+                            <td><b th:text="*{fullName}"></b></td>
+                            <td><a th:href="@{{clubId}/coach/{coachId}/edit(clubId=${club.id},coachId=${club.coach.id})}">Edit Coach</a></td>
+                        </tr>
+                    </div>
+                    <div th:if="${club.coach == null}">
+                        <a th:href="@{{clubId}/coach/new(clubId=${club.id})}" class="btn btn-default">Add Coach</a>
+                    </div>
+                </table>
+            </div>
+        </div>
     </div>
-</table>
+</div>
 
-<h2>Players</h2>
-<table class="table table-striped">
-    <tr th:each="player : ${club.playerSet}">
-        <td align="top">
-            <dl class="dl-horizontal">
-                <dt>ID</dt>
-                <dd th:text="${player.id}"></dd>
-            </dl>
-        </td>
-        <td align="top">
-            <table class="table-condensed">
-                <tr>
-                    <td th:text="${player.fullName}"></td>
+<div class="row">
+    <div class="card">
+        <div class="card-header">
+            <h2 style="text-align: center; font-family: Electro Shackle, sans-serif">Matches</h2>
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+            <table class="table table-striped">
+                <tr th:each="match : ${club.matchSet}">
+                    <td align="top">
+                        <dl class="dl-horizontal">
+                            <dt>ID</dt>
+                            <dd th:text="${match.id}"></dd>
+                        </dl>
+                    </td>
+                    <td align="top">
+                        <table class="table-condensed">
+                            <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Host Club</th>
+                                <th>Visitor</th>
+                                <th>Score</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <td th:text="${#temporals.format(match.playDate, 'yyyy.MM.dd')}"></td>
+                                <td th:text="${match.hostClub.name}"></td>
+                                <td th:text="${match.visitorClub.name}"></td>
+                                <td th:text="${match.score}"></td>
+                            </tr>
+                            <tr>
+                                <td><a th:href="@{{clubId}/matches/{matchId}/edit(clubId=${club.id},matchId=${match.id})}">Edit Match</a></td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
             </table>
-        </td>
-        <td align="top">
-            <table class="table-condensed">
-                <tr>
-                    <td><a th:href="@{{clubId}/players/{playerId}/edit(clubId=${club.id},playerId=${player.id})}">Edit Player</a></td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-    <a th:href="@{{id}/player/new(id=${club.id})}" class="btn btn-default">Add New Player</a>
-</table>
+            </p>
+        </div>
+        <div class="card-footer">
+            <a th:href="@{{id}/match/new(id=${club.id})}" class="btn btn-default">Add New Match</a>
+        </div>
+    </div>
+</div>
 
-<h2>Matches</h2>
-<table class="table table-striped">
-    <tr th:each="match : ${club.matchSet}">
-        <td align="top">
-            <dl class="dl-horizontal">
-                <dt>ID</dt>
-                <dd th:text="${match.id}"></dd>
-            </dl>
-        </td>
-        <td align="top">
-            <table class="table-condensed">
-                <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Host Club</th>
-                    <th>Visitor</th>
-                    <th>Score</th>
-                </tr>
-                </thead>
-                <tr>
-                    <td th:text="${#temporals.format(match.playDate, 'yyyy.MM.dd')}"></td>
-                    <td th:text="${match.hostClub.name}"></td>
-                    <td th:text="${match.visitorClub.name}"></td>
-                    <td th:text="${match.score}"></td>
-                </tr>
-                <tr>
-                    <td><a th:href="@{{clubId}/matches/{matchId}/edit(clubId=${club.id},matchId=${match.id})}">Edit Match</a></td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-    <a th:href="@{{id}/match/new(id=${club.id})}" class="btn btn-default">Add New Match</a>
-</table>
+<div class="row">
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text" style="text-align: center">
+                <a th:href="@{{id}/players/(id=${club.id})}" class="btn btn-success btn-lg">Show Team</a>
+            </p>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

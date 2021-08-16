@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import rafinha.example.sfgwebstats.model.Club;
 import rafinha.example.sfgwebstats.services.ClubService;
+import rafinha.example.sfgwebstats.services.PlayerService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -21,9 +22,11 @@ public class ClubController {
     private static final String CLUB_REDIRECT_VIEWNAME = "redirect:/clubs/";
 
     private final ClubService clubService;
+    private final PlayerService playerService;
 
-    public ClubController(ClubService clubService) {
+    public ClubController(ClubService clubService, PlayerService playerService) {
         this.clubService = clubService;
+        this.playerService = playerService;
     }
 
     @GetMapping({"/find"})
@@ -92,5 +95,12 @@ public class ClubController {
             Club savedClub = clubService.save(club);
             return CLUB_REDIRECT_VIEWNAME + savedClub.getId();
         }
+    }
+
+    @GetMapping("/{clubId}/players")
+    public String listAllPlayersFromClub(@PathVariable Long clubId, Model model) {
+        model.addAttribute("club", clubService.findById(clubId));
+        model.addAttribute("players", playerService.findAllByClubId(clubId));
+        return "clubs/listOfClubPlayers";
     }
 }

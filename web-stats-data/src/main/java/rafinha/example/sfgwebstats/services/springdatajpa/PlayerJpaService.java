@@ -31,6 +31,11 @@ public class PlayerJpaService implements PlayerService {
     }
 
     @Override
+    public Set<Player> findAllByClubId(Long clubId) {
+        return playerRepository.findAllByClubId(clubId);
+    }
+
+    @Override
     public Set<Player> findAll() {
         Set<Player> players = new HashSet<>();
         playerRepository.findAll().forEach(players::add);

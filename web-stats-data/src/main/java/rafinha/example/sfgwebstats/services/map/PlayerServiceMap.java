@@ -36,6 +36,11 @@ public class PlayerServiceMap extends AbstractMapService<Player, Long> implement
     }
 
     @Override
+    public Set<Player> findAllByClubId(Long clubId) {
+        return Collections.emptySet();
+    }
+
+    @Override
     public Set<Player> findAll() {
         return super.findAll();
     }

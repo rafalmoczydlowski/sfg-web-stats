@@ -10,4 +10,6 @@ public interface PlayerRepository extends CrudRepository<Player, Long> {
     Player findByLastName(String lastName);
 
     Set<Player> findAllByClub(String club);
+
+    Set<Player> findAllByClubId(Long clubId);
 }

@@ -18,6 +18,7 @@
             <th scope="col" style="width: 150px">Last Name</th>
             <th scope="col" style="width: 50px">Age</th>
             <th scope="col" style="width: 150px">Club</th>
+            <th scope="col" style="width: 50px"></th>
         </tr>
         </thead>
         <tbody>
@@ -29,6 +30,7 @@
             <td th:text="${player.lastName}"></td>
             <td th:text="${player.age}"></td>
             <td th:text="${player.club.name}"></td>
+            <td><a th:href="@{clubs/{clubId}/player/{playerId}/edit(clubId=${player.club.id},playerId=${player.id})}">Edit</a></td>
         </tr>
         </tbody>
     </table>

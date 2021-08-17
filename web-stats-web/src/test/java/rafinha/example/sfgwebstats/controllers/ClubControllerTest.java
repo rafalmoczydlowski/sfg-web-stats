@@ -10,7 +10,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import rafinha.example.sfgwebstats.model.Club;
+import rafinha.example.sfgwebstats.model.Player;
 import rafinha.example.sfgwebstats.services.ClubService;
+import rafinha.example.sfgwebstats.services.PlayerService;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -31,10 +33,15 @@ class ClubControllerTest {
     @Mock
     ClubService clubService;
 
+    @Mock
+    PlayerService playerService;
+
     @InjectMocks
     ClubController controller;
 
     Set<Club> clubSet;
+
+    Set<Player> playerSet;
 
     MockMvc mvc;
 
@@ -43,6 +50,10 @@ class ClubControllerTest {
         clubSet = new HashSet<>();
         clubSet.add(Club.builder().id(1L).build());
         clubSet.add(Club.builder().id(2L).build());
+
+        playerSet = new HashSet<>();
+        playerSet.add(Player.builder().id(1L).build());
+        playerSet.add(Player.builder().id(2L).build());
 
         mvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
@@ -142,5 +153,15 @@ class ClubControllerTest {
                 .andExpect(model().attributeExists("club"));
 
         verify(clubService).save(ArgumentMatchers.any());
+    }
+
+    @Test
+    void listAllPlayersFromClubTest() throws Exception {
+        when(playerService.findAllByClubId(anyLong())).thenReturn(playerSet);
+
+        mvc.perform(get("/clubs/1/players"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("clubs/listOfClubPlayers"))
+                .andExpect(model().attribute("players", hasSize(2)));
     }
 }

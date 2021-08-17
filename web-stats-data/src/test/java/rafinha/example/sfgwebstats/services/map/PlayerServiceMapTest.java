@@ -21,7 +21,7 @@ class PlayerServiceMapTest {
 
     @BeforeEach
     void setPlayerServiceMap(){
-        playerServiceMap = new PlayerServiceMap(new PlayerTypeMapService()); // DI
+        playerServiceMap = new PlayerServiceMap();
 
         Player player1 = Player.builder().id(playerId).lastName(lastName).firstName(firstName).build();
 

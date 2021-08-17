@@ -61,4 +61,21 @@ public class Club extends BaseEntity{
         List<String> playersList = playerSet.stream().map(Player::getFullName).collect(Collectors.toList());
         return playersList.toString().replaceAll("(^\\[|\\]$)", "");
     }
+
+    public Player getPlayer(String name) {
+        return getPlayer( name, false);
+    }
+
+    public Player getPlayer(String name, boolean ignoreNew) {
+        name = name.toLowerCase();
+        for (Player player : playerSet) {
+            if(!ignoreNew || !player.isNew()) {
+                String compName = player.getFullName();
+                compName = compName.toLowerCase();
+                if(compName.equals(name))
+                    return player;
+            }
+        }
+        return null;
+    }
 }

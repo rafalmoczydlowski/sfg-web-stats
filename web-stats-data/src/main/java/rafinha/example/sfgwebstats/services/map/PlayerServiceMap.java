@@ -4,9 +4,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import rafinha.example.sfgwebstats.model.Club;
 import rafinha.example.sfgwebstats.model.Player;
-import rafinha.example.sfgwebstats.model.PlayerType;
 import rafinha.example.sfgwebstats.services.PlayerService;
-import rafinha.example.sfgwebstats.services.PlayerTypeService;
 
 import java.util.Collections;
 import java.util.Set;
@@ -14,12 +12,6 @@ import java.util.Set;
 @Service
 @Profile({"default", "map"})
 public class PlayerServiceMap extends AbstractMapService<Player, Long> implements PlayerService {
-
-    private final PlayerTypeService playerTypeService;
-
-    public PlayerServiceMap(PlayerTypeService playerTypeService) {
-        this.playerTypeService = playerTypeService;
-    }
 
     @Override
     public Player findByLastName(String lastName) {
@@ -62,16 +54,6 @@ public class PlayerServiceMap extends AbstractMapService<Player, Long> implement
 
     @Override
     public Player save(Player object) {
-        if(object != null && object.getPlayerTypeSet() != null) {
-            object.getPlayerTypeSet().forEach(this::accept);
-        }
         return super.save(object);
-    }
-
-    private void accept(PlayerType playerType) {
-        if (playerType.getId() == null) {
-            PlayerType savedPlayerType = playerTypeService.save(playerType);
-            playerType.setId(savedPlayerType.getId());
-        }
     }
 }
